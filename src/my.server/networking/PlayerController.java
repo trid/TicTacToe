@@ -1,5 +1,7 @@
 package my.server.networking;
 
+import my.messages.serialized.Message;
+
 import java.net.Socket;
 
 /**
@@ -10,17 +12,42 @@ import java.net.Socket;
  * To change this template use File | Settings | File Templates.
  */
 public class PlayerController {
-    private static PlayerController instance = new PlayerController();
-
     private Player p1;
     private Player p2;
 
     private Socket p1Socket;
     private Socket p2Socket;
 
-    private PlayerController() {}
+    private Thread p1Listener;
+    private Thread p2Listener;
 
-    public PlayerController getInstance(){
-        return instance;
+    public PlayerController(Socket p1, Socket p2) {
+        this.p1Socket = p1;
+        this.p2Socket = p2;
+    }
+
+    public void run(){
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void processMessage(Message message){
+
+    }
+
+    private class Listener implements Runnable {
+        private Socket socket;
+
+        public Listener(Socket socket){
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+
+        }
     }
 }
