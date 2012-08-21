@@ -1,7 +1,12 @@
 package my.client.swing;
 
+import my.client.Client;
+import my.client.ClientController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,30 +27,48 @@ public class MainForm extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         BorderLayout layout = new BorderLayout();
-        //setLayout(layout);
+        setLayout(layout);
 
         //chatPanel.setSize(WIDTH/2, HEIGHT);
         //ticTacToePanel.setSize(WIDTH/2, HEIGHT);
 
-        add(chatPanel, BorderLayout.WEST);
-        //add(ticTacToePanel, BorderLayout.EAST);
+        add(chatPanel, BorderLayout.SOUTH);
+        add(ticTacToePanel, BorderLayout.CENTER);
     }
 
     private class ChatPanel extends JPanel{
-        public ChatPanel(){
-            JTextPane chat = new JTextPane();
-            JTextField message = new JTextField();
-            BorderLayout layout = new BorderLayout();
-            setLayout(layout);
-            //chat.setSize(WIDTH/2, HEIGHT - message.getHeight());
-            //message.setSize(WIDTH/2, message.getHeight());
+        private final JTextPane chat;
+        private final JTextField message;
 
-            add(chat, BorderLayout.SOUTH);
-            add(message, BorderLayout.NORTH);
+        public ChatPanel(){
+            super(new BorderLayout());
+            chat = new JTextPane();
+            chat.setEnabled(false);
+            message = new JTextField();
+            message.addActionListener(new ChatListener());
+            JButton sendMessage = new JButton("Send");
+            sendMessage.addActionListener(new ChatListener());
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.add(message);
+            panel.add(sendMessage, BorderLayout.EAST);
+
+            add(chat, BorderLayout.NORTH);
+            add(panel, BorderLayout.SOUTH);
+        }
+
+        private class ChatListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Client.getClient().sendChatMessage(message.getText());
+            }
         }
     }
 
     private class TicTacToePanel extends JPanel{
+        @Override
+        protected void paintComponent(Graphics g) {
 
+        }
     }
 }

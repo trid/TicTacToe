@@ -9,5 +9,6 @@ package my.messages.serialized;
  */
 public enum GameMessageType {
     XO_MESSAGE,
+    CHAT_MESSAGE,
     ANSWER_MESSAGE
 }

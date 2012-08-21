@@ -1,5 +1,7 @@
 package my.client;
 
+import my.messages.serialized.ChatMessage;
+
 /**
  * Created with IntelliJ IDEA.
  * User: trid
@@ -13,11 +15,24 @@ public class Client {
     private Client(){}
     private ClientController clientController;
 
+    private String playerName;
+    private UICallBack callBack;
+
     public void createClientController(String addr, String name){
         clientController = new ClientController(addr, name);
+        playerName = name;
     }
 
     public static Client getClient(){
         return instance;
+    }
+
+    public void sendChatMessage(String text) {
+        ChatMessage message = new ChatMessage(playerName, text);
+        clientController.sendMessage(message);
+    }
+
+    public void setCallBack(UICallBack callBack){
+        this.callBack = callBack;
     }
 }
