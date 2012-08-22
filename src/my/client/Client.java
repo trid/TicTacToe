@@ -35,4 +35,8 @@ public class Client {
     public void setCallBack(UICallBack callBack){
         this.callBack = callBack;
     }
+
+    public void receiveChatMessage(ChatMessage message) {
+        callBack.receiveChatMessage(message);
+    }
 }

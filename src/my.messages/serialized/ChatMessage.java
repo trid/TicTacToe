@@ -10,6 +10,7 @@ package my.messages.serialized;
 public class ChatMessage implements Message{
     private String playerName;
     private String message;
+    private String text;
 
     @Override
     public GameMessageType getType() {
@@ -19,5 +20,13 @@ public class ChatMessage implements Message{
     public ChatMessage(String playerName, String message){
         this.playerName = playerName;
         this.message = message;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getName() {
+        return playerName;
     }
 }

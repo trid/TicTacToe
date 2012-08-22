@@ -1,7 +1,8 @@
 package my.client.swing;
 
 import my.client.Client;
-import my.client.ClientController;
+import my.client.UICallBack;
+import my.messages.serialized.ChatMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,29 +39,33 @@ public class MainForm extends JFrame {
 
     private class ChatPanel extends JPanel{
         private final JTextPane chat;
-        private final JTextField message;
+        private final JTextField messageText;
 
         public ChatPanel(){
             super(new BorderLayout());
             chat = new JTextPane();
             chat.setEnabled(false);
-            message = new JTextField();
-            message.addActionListener(new ChatListener());
+            messageText = new JTextField();
+            messageText.addActionListener(new ChatListener());
             JButton sendMessage = new JButton("Send");
             sendMessage.addActionListener(new ChatListener());
             JPanel panel = new JPanel(new BorderLayout());
-            panel.add(message);
+            panel.add(messageText);
             panel.add(sendMessage, BorderLayout.EAST);
 
             add(chat, BorderLayout.NORTH);
             add(panel, BorderLayout.SOUTH);
         }
 
+        public void addChatMessage(ChatMessage message){
+            chat.setText(chat.getText() + '\n' + message.getName() + ": " + message.getText());
+        }
+
         private class ChatListener implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Client.getClient().sendChatMessage(message.getText());
+                Client.getClient().sendChatMessage(messageText.getText());
             }
         }
     }
@@ -68,6 +73,14 @@ public class MainForm extends JFrame {
     private class TicTacToePanel extends JPanel{
         @Override
         protected void paintComponent(Graphics g) {
+
+        }
+    }
+
+    private class GameCallBack implements UICallBack {
+
+        @Override
+        public void receiveChatMessage(ChatMessage message) {
 
         }
     }
