@@ -1,7 +1,8 @@
 package my.client.swing;
 
 import my.client.Client;
-import my.client.ClientController;
+import my.client.UICallBack;
+import my.messages.serialized.ChatMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,9 +20,12 @@ public class MainForm extends JFrame {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
 
+    private final ChatPanel chatPanel;
+    private final TicTacToePanel ticTacToePanel;
+
     public MainForm(){
-        ChatPanel chatPanel = new ChatPanel();
-        TicTacToePanel ticTacToePanel = new TicTacToePanel();
+        chatPanel = new ChatPanel();
+        ticTacToePanel = new TicTacToePanel();
 
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,27 +33,24 @@ public class MainForm extends JFrame {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        //chatPanel.setSize(WIDTH/2, HEIGHT);
-        //ticTacToePanel.setSize(WIDTH/2, HEIGHT);
-
         add(chatPanel, BorderLayout.SOUTH);
         add(ticTacToePanel, BorderLayout.CENTER);
     }
 
-    private class ChatPanel extends JPanel{
+    private final class ChatPanel extends JPanel{
         private final JTextPane chat;
-        private final JTextField message;
+        private final JTextField messageText;
 
         public ChatPanel(){
             super(new BorderLayout());
             chat = new JTextPane();
             chat.setEnabled(false);
-            message = new JTextField();
-            message.addActionListener(new ChatListener());
+            messageText = new JTextField();
+            messageText.addActionListener(new ChatListener());
             JButton sendMessage = new JButton("Send");
             sendMessage.addActionListener(new ChatListener());
             JPanel panel = new JPanel(new BorderLayout());
-            panel.add(message);
+            panel.add(messageText);
             panel.add(sendMessage, BorderLayout.EAST);
 
             add(chat, BorderLayout.NORTH);
@@ -60,8 +61,13 @@ public class MainForm extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Client.getClient().sendChatMessage(message.getText());
+                Client.getClient().sendChatMessage(messageText.getText());
+                chat.setText(chat.getText() + "\nMe: " + messageText.getText());
             }
+        }
+
+        public void addMessage(ChatMessage message){
+            chat.setText(chat.getText() + "\n" + message.getPlayerName() + ": " + message.getMessage());
         }
     }
 
@@ -69,6 +75,14 @@ public class MainForm extends JFrame {
         @Override
         protected void paintComponent(Graphics g) {
 
+        }
+    }
+
+    private class MyUICallBack implements UICallBack{
+
+        @Override
+        public void receiveChatMessage(ChatMessage message) {
+            chatPanel.addMessage(message);
         }
     }
 }

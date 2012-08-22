@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
  * Time: 1:40
  */
 public class HelloForm extends JFrame {
-    private JTextPane addr;
-    private JTextPane name;
+    private JTextField addr;
+    private JTextField name;
     private JButton start;
     private JLabel nameLabel;
     private JLabel addrLabel;
@@ -28,9 +28,9 @@ public class HelloForm extends JFrame {
         GridLayout layout = new GridLayout(7, 1);
         panel.setLayout(layout);
         addrLabel = new JLabel("Set game server address");
-        addr = new JTextPane();
+        addr = new JTextField();
         nameLabel = new JLabel("Set your name here");
-        name = new JTextPane();
+        name = new JTextField();
         start = new JButton("Start");
         panel.add(addrLabel);
         panel.add(addr);
@@ -39,6 +39,8 @@ public class HelloForm extends JFrame {
         panel.add(start);
         add(panel);
         start.addActionListener(new StartListener());
+        addr.addActionListener(new StartListener());
+        name.addActionListener(new StartListener());
     }
 
     public static void main(String[] args){

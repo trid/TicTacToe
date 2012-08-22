@@ -20,4 +20,12 @@ public class ChatMessage implements Message{
         this.playerName = playerName;
         this.message = message;
     }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

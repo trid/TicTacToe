@@ -3,9 +3,7 @@ package my.server.networking;
 import my.messages.serialized.Message;
 import my.server.GameProcessor;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,8 +15,8 @@ import java.net.Socket;
  * To change this template use File | Settings | File Templates.
  */
 public class PlayerController {
-    private Player p1;
-    private Player p2;
+    private Player player1;
+    private Player player2;
 
     private Socket p1Socket;
     private Socket p2Socket;
@@ -48,8 +46,10 @@ public class PlayerController {
         this.p1Socket = p1;
         this.p2Socket = p2;
 
-        p1Listener = new Thread(new Listener(p1Socket));
-        p2Listener = new Thread(new Listener(p2Socket));
+        p1Listener = new Thread(new Listener(p1Socket, player1));
+        p1Listener.start();
+        p2Listener = new Thread(new Listener(p2Socket, player2));
+        p2Listener.start();
     }
 
     public void run(){
@@ -62,15 +62,40 @@ public class PlayerController {
         }
     }
 
-    public void processMessage(Message message){
+    public void processMessage(Message message, Player player){
+        switch (message.getType()) {
+            case XO_MESSAGE:
+                break;
+            case CHAT_MESSAGE:
+                if (player == player1)
+                    sendMessage(p2Socket, message);
+                else
+                    sendMessage(p1Socket, message);
+                break;
+            case ANSWER_MESSAGE:
+                break;
+        }
+    }
 
+    private void sendMessage(Socket socket, Message message) {
+        OutputStream os = null;
+
+        try {
+            os = socket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            oos.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private class Listener implements Runnable {
         private Socket socket;
+        private Player player;
 
-        public Listener(Socket socket){
+        public Listener(Socket socket, Player player){
             this.socket = socket;
+            this.player = player;
         }
 
         @Override
@@ -81,7 +106,7 @@ public class PlayerController {
                 ObjectInputStream ois = new ObjectInputStream(is);
                 while (!socket.isClosed()){
                     Message message = (Message)ois.readObject();
-                    processMessage(message);
+                    processMessage(message, player);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15cf8f2b-c321-4ff7-8d80-04d1813df99e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/my/client/UICallBack.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TicTacToe/my/clent/swing/Client.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TicTacToe/my/server/Player.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TicTacToe/my/server/PlayerController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TicTacToe/my/server/Server.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TicTacToe/my/server/tests/GameProcessorTest.class" afterPath="$PROJECT_DIR$/out/production/TicTacToe/my/server/tests/GameProcessorTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java" afterPath="$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my.messages/serialized/GameMessageType.java" afterPath="$PROJECT_DIR$/src/my.messages/serialized/GameMessageType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my.server/networking/PlayerController.java" afterPath="$PROJECT_DIR$/src/my.server/networking/PlayerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my/client/Client.java" afterPath="$PROJECT_DIR$/src/my/client/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my/client/ClientController.java" afterPath="$PROJECT_DIR$/src/my/client/ClientController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my/client/UICallBack.java" afterPath="$PROJECT_DIR$/src/my/client/UICallBack.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my/client/swing/HelloForm.java" afterPath="$PROJECT_DIR$/src/my/client/swing/HelloForm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my/client/swing/MainForm.java" afterPath="$PROJECT_DIR$/src/my/client/swing/MainForm.java" />
     </list>
     <ignored path="TicTacToe.iws" />
@@ -31,6 +27,34 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/my/client/ClientController.java" line="40" class="my.client.ClientController" package="my.client">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/my/client/ClientController.java" line="54" class="my.client.ClientController" package="my.client">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -71,24 +95,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ChatMessage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="31" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Message.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/Message.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="17" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FieldType.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/FieldType.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -116,10 +122,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloForm.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HelloForm.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my/client/swing/HelloForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="12" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.50236964">
+            <state line="32" column="30" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/my.server/networking/PlayerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="27" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,7 +143,16 @@
       <file leaf-file-name="MainForm.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my/client/swing/MainForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="68" selection-start="1849" selection-end="1849" vertical-scroll-proportion="0.0">
+            <state line="84" column="40" selection-start="2474" selection-end="2474" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatMessage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="32" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,7 +161,7 @@
       <file leaf-file-name="Client.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="33" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
+            <state line="26" column="25" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -146,16 +170,16 @@
       <file leaf-file-name="UICallBack.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my/client/UICallBack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="17" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+            <state line="12" column="49" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ClientController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/my/client/ClientController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="6" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0">
+            <state line="54" column="0" selection-start="1326" selection-end="1326" vertical-scroll-proportion="0.53351206">
               <folding />
             </state>
           </provider>
@@ -174,8 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/my.messages/AnswerType.java" />
-        <option value="$PROJECT_DIR$/src/my.messages/FieldAnswerType.java" />
         <option value="$PROJECT_DIR$/src/my.messages/FieldType.java" />
         <option value="$PROJECT_DIR$/src/my.server/FieldStatus.java" />
         <option value="$PROJECT_DIR$/src/my.server/Server.java" />
@@ -184,18 +206,20 @@
         <option value="$PROJECT_DIR$/src/my.server/Field.java" />
         <option value="$PROJECT_DIR$/src/my.server/tests/GameProcessorTest.java" />
         <option value="$PROJECT_DIR$/src/my.server/networking/Player.java" />
-        <option value="$PROJECT_DIR$/src/my.server/networking/PlayerController.java" />
         <option value="$PROJECT_DIR$/src/my.messages/serialized/GameMessageType.java" />
+        <option value="$PROJECT_DIR$/src/my/client/UICallBack.java" />
         <option value="$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java" />
         <option value="$PROJECT_DIR$/src/my/client/swing/MainForm.java" />
-        <option value="$PROJECT_DIR$/src/my/client/UICallBack.java" />
+        <option value="$PROJECT_DIR$/src/my.server/networking/PlayerController.java" />
+        <option value="$PROJECT_DIR$/src/my/client/ClientController.java" />
         <option value="$PROJECT_DIR$/src/my/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/my/client/swing/HelloForm.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1876" />
-    <option name="y" value="83" />
+    <option name="x" value="180" />
+    <option name="y" value="94" />
     <option name="width" value="1450" />
     <option name="height" value="847" />
   </component>
@@ -225,16 +249,12 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -415,7 +435,20 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TicTacToe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TicTacToe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -434,9 +467,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -488,7 +521,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="TicTacToe" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -504,7 +543,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="TicTacToe" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -528,6 +573,24 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -556,24 +619,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -673,18 +718,22 @@
       <created>1345543682409</created>
       <updated>1345543682409</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Minor changes in UI">
+      <created>1345561495902</created>
+      <updated>1345561495902</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1876" y="83" width="1450" height="847" extended-state="0" />
+    <frame x="180" y="94" width="1450" height="847" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -693,8 +742,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24928367" sideWeight="0.67" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24928367" sideWeight="0.6" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32857144" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -739,7 +788,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/ant.xml&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes in UI" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -754,6 +803,7 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Хрен пойми чего я тут накрутил, пусть будет коммит :)" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/ant.xml&#10;" />
+    <MESSAGE value="Minor changes in UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -783,14 +833,14 @@
         <state line="20" column="38" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/my.server/networking/PlayerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="21" selection-start="529" selection-end="529" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/FieldAnswerType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="23" selection-start="312" selection-end="312" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="17" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/FieldType.java">
@@ -798,65 +848,61 @@
         <state line="11" column="4" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/SetXOMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="10" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/GameMessageType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="12" column="4" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/Message.java">
+    <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/SetXOMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="17" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="11" column="10" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java">
+    <entry file="file://$PROJECT_DIR$/src/my/client/UICallBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="31" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
+        <state line="12" column="49" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/client/swing/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="68" selection-start="1849" selection-end="1849" vertical-scroll-proportion="0.0">
+        <state line="84" column="40" selection-start="2474" selection-end="2474" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/my/client/UICallBack.java">
+    <entry file="file://$PROJECT_DIR$/src/my.server/networking/PlayerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my/client/ClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="6" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="33" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
+        <state line="51" column="27" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my/client/swing/HelloForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="12" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.50236964">
+        <state line="32" column="30" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my.messages/serialized/ChatMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="32" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="25" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my/client/ClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1326" selection-end="1326" vertical-scroll-proportion="0.53351206">
           <folding />
         </state>
       </provider>

@@ -18,9 +18,13 @@ public class Client {
     private String playerName;
     private UICallBack callBack;
 
+    private Thread listener;
+
     public void createClientController(String addr, String name){
         clientController = new ClientController(addr, name);
         playerName = name;
+        listener = new Thread(clientController);
+        listener.start();
     }
 
     public static Client getClient(){
@@ -34,5 +38,9 @@ public class Client {
 
     public void setCallBack(UICallBack callBack){
         this.callBack = callBack;
+    }
+
+    public void receiveChatMessage(ChatMessage message) {
+        callBack.receiveChatMessage(message);
     }
 }
