@@ -20,9 +20,12 @@ public class MainForm extends JFrame {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
 
+    private final ChatPanel chatPanel;
+    private final TicTacToePanel ticTacToePanel;
+
     public MainForm(){
-        ChatPanel chatPanel = new ChatPanel();
-        TicTacToePanel ticTacToePanel = new TicTacToePanel();
+        chatPanel = new ChatPanel();
+        ticTacToePanel = new TicTacToePanel();
 
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,14 +33,13 @@ public class MainForm extends JFrame {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        //chatPanel.setSize(WIDTH/2, HEIGHT);
-        //ticTacToePanel.setSize(WIDTH/2, HEIGHT);
-
         add(chatPanel, BorderLayout.SOUTH);
         add(ticTacToePanel, BorderLayout.CENTER);
+
+        Client.getClient().setCallBack(new MyUICallBack());
     }
 
-    private class ChatPanel extends JPanel{
+    private final class ChatPanel extends JPanel{
         private final JTextPane chat;
         private final JTextField messageText;
 
@@ -57,16 +59,17 @@ public class MainForm extends JFrame {
             add(panel, BorderLayout.SOUTH);
         }
 
-        public void addChatMessage(ChatMessage message){
-            chat.setText(chat.getText() + '\n' + message.getName() + ": " + message.getText());
-        }
-
         private class ChatListener implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 Client.getClient().sendChatMessage(messageText.getText());
+                chat.setText(chat.getText() + "\nMe: " + messageText.getText());
             }
+        }
+
+        public void addMessage(ChatMessage message){
+            chat.setText(chat.getText() + "\n" + message.getPlayerName() + ": " + message.getMessage());
         }
     }
 
@@ -77,11 +80,11 @@ public class MainForm extends JFrame {
         }
     }
 
-    private class GameCallBack implements UICallBack {
+    private class MyUICallBack implements UICallBack{
 
         @Override
         public void receiveChatMessage(ChatMessage message) {
-
+            chatPanel.addMessage(message);
         }
     }
 }

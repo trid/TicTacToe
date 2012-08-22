@@ -59,8 +59,8 @@ public class HelloForm extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             String address = addr.getText();
-            String name = addr.getText();
-            Client.getClient().createClientController(address, name);
+            String playerName = name.getText();
+            Client.getClient().createClientController(address, playerName);
             MainForm mainForm = new MainForm();
             mainForm.setVisible(true);
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

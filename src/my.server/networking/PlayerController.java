@@ -1,6 +1,6 @@
 package my.server.networking;
 
-import my.messages.serialized.GameMessageType;
+import my.messages.serialized.ChatMessage;
 import my.messages.serialized.Message;
 import my.server.GameProcessor;
 
@@ -16,8 +16,8 @@ import java.net.Socket;
  * To change this template use File | Settings | File Templates.
  */
 public class PlayerController {
-    private Player p1;
-    private Player p2;
+    private Player player1 = new Player();
+    private Player player2 = new Player();
 
     private Socket p1Socket;
     private Socket p2Socket;
@@ -37,21 +37,23 @@ public class PlayerController {
             System.out.println("Player 2 connected");
 
             PlayerController playerController = new PlayerController(p1, p2);
-            playerController.run();
+            playerController.sleep();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public PlayerController(Socket p1Socket, Socket p2Socket) {
-        this.p1Socket = p1Socket;
-        this.p2Socket = p2Socket;
+    public PlayerController(Socket p1, Socket p2) {
+        this.p1Socket = p1;
+        this.p2Socket = p2;
 
-        p1Listener = new Thread(new Listener(p1Socket, p1));
-        p2Listener = new Thread(new Listener(p2Socket, p2));
+        p1Listener = new Thread(new Listener(p1Socket, player1));
+        p1Listener.start();
+        p2Listener = new Thread(new Listener(p2Socket, player2));
+        p2Listener.start();
     }
 
-    public void run(){
+    public void sleep(){
         while (true) {
             try {
                 Thread.sleep(1000);
@@ -62,25 +64,25 @@ public class PlayerController {
     }
 
     public void processMessage(Message message, Player player){
-        System.out.println("Got message");
+        System.out.println("Got message!");
         switch (message.getType()) {
+            case XO_MESSAGE:
+                break;
             case CHAT_MESSAGE:
-                if (player == p1)
+                System.out.println(((ChatMessage)message).getMessage());
+                if (player == player1)
                     sendMessage(p2Socket, message);
                 else
                     sendMessage(p1Socket, message);
                 break;
-            case XO_MESSAGE:
-                break;
             case ANSWER_MESSAGE:
-                break;
-            default:
                 break;
         }
     }
 
     private void sendMessage(Socket socket, Message message) {
         OutputStream os = null;
+
         try {
             os = socket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
@@ -106,7 +108,8 @@ public class PlayerController {
                 is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
                 while (!socket.isClosed()){
-                    Message message = (Message)ois.readObject();
+                    Object obj = ois.readObject();
+                    Message message = (Message)obj;
                     processMessage(message, player);
                 }
             } catch (IOException e) {

@@ -18,6 +18,10 @@ public class Player {
         this.playerName = playerName;
     }
 
+    public Player() {
+
+    }
+
     public FieldType getPlayerSide() {
         return playerSide;
     }

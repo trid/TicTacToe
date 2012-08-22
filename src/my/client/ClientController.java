@@ -4,10 +4,8 @@ import my.messages.serialized.ChatMessage;
 import my.messages.serialized.FieldType;
 import my.messages.serialized.Message;
 
-import java.io.IOException;
+import java.io.*;
 
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 
 /**
@@ -16,7 +14,7 @@ import java.net.Socket;
  * Date: 18.08.12
  * Time: 1:25
  */
-public class ClientController {
+public class ClientController implements Runnable {
     private Socket socket;
     private FieldType player;
     private String playerName;
@@ -27,10 +25,13 @@ public class ClientController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        this.playerName = playerName;
     }
 
     public void sendMessage(Message message){
         OutputStream os = null;
+
         try {
             os = socket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
@@ -42,23 +43,30 @@ public class ClientController {
 
     public void processMessage(Message message){
         switch (message.getType()) {
+            case XO_MESSAGE:
+                break;
             case CHAT_MESSAGE:
                 Client.getClient().receiveChatMessage((ChatMessage)message);
                 break;
-            case XO_MESSAGE:
-                break;
             case ANSWER_MESSAGE:
-                break;
-            default:
                 break;
         }
     }
 
-    private class MessageListener implements Runnable {
-
-        @Override
-        public void run() {
-
+    @Override
+    public void run() {
+        InputStream is = null;
+        try {
+            is = socket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(is);
+            while (!socket.isClosed()){
+                Message message = (Message)ois.readObject();
+                processMessage(message);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
