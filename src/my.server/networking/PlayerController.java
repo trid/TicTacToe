@@ -1,12 +1,13 @@
 package my.server.networking;
 
-import my.messages.serialized.ChatMessage;
-import my.messages.serialized.Message;
+import my.messages.serialized.*;
+import my.server.FieldStatus;
 import my.server.GameProcessor;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,8 +17,8 @@ import java.net.Socket;
  * To change this template use File | Settings | File Templates.
  */
 public class PlayerController {
-    private Player player1 = new Player();
-    private Player player2 = new Player();
+    private Player player1 = new Player(FieldType.X, "");
+    private Player player2 = new Player(FieldType.O, "");
 
     private Socket p1Socket;
     private Socket p2Socket;
@@ -51,6 +52,9 @@ public class PlayerController {
         p1Listener.start();
         p2Listener = new Thread(new Listener(p2Socket, player2));
         p2Listener.start();
+
+        player1.setPlayerSide(FieldType.X);
+        player2.setPlayerSide(FieldType.O);
     }
 
     public void sleep(){
@@ -67,6 +71,22 @@ public class PlayerController {
         System.out.println("Got message!");
         switch (message.getType()) {
             case XO_MESSAGE:
+                System.out.println("Player tried to set mark");
+                SetXOMessage setXOMessage = (SetXOMessage)message;
+                FieldAnswerType answer = gameProcessor.putMark(setXOMessage.getX(), setXOMessage.getY(), player.getPlayerSide());
+                Answer answerMessage = new Answer(answer, setXOMessage.getX(), setXOMessage.getY());
+                if (player == player1){
+                    sendMessage(p1Socket, answerMessage);
+                    if (answer == FieldAnswerType.ACCEPTED)
+                        sendMessage(p2Socket, setXOMessage);
+                }
+                else {
+                    sendMessage(p2Socket, answerMessage);
+                    if (answer == FieldAnswerType.ACCEPTED)
+                        sendMessage(p1Socket, setXOMessage);
+                }
+                if (answer == FieldAnswerType.ACCEPTED)
+                    checkFinished();
                 break;
             case CHAT_MESSAGE:
                 System.out.println(((ChatMessage)message).getMessage());
@@ -77,6 +97,40 @@ public class PlayerController {
                 break;
             case ANSWER_MESSAGE:
                 break;
+            case WHOAMI:
+                if (player == player1){
+                    System.out.println("Player 1 asks who is he");
+                    Message toPlayer = new PlayerSideMessage(player1.getPlayerSide());
+                    sendMessage(p1Socket, toPlayer);
+                }
+                else {
+                    System.out.println("Player 2 asks who is he");
+                    Message toPlayer = new PlayerSideMessage(player2.getPlayerSide());
+                    sendMessage(p2Socket, toPlayer);
+                }
+        }
+    }
+
+    private void checkFinished() {
+        FieldStatus status = gameProcessor.getStatus();
+        if (status != FieldStatus.GAME_GOING){
+            if (status == FieldStatus.FRIENDSHIP){
+                GameOverMessage message = new GameOverMessage(GameResult.FRIENDSHIP);
+                sendMessage(p1Socket, message);
+                sendMessage(p2Socket, message);
+            }
+            else {
+                GameOverMessage winner = new GameOverMessage(GameResult.WIN);
+                GameOverMessage loser = new GameOverMessage(GameResult.LOSE);
+                if (status == FieldStatus.WIN_X){
+                    sendMessage(p1Socket, winner);
+                    sendMessage(p2Socket, loser);
+                }
+                else {
+                    sendMessage(p2Socket, winner);
+                    sendMessage(p1Socket, loser);
+                }
+            }
         }
     }
 
@@ -104,18 +158,23 @@ public class PlayerController {
         @Override
         public void run() {
             InputStream is = null;
-            try {
-                is = socket.getInputStream();
-                ObjectInputStream ois = new ObjectInputStream(is);
-                while (!socket.isClosed()){
+            while (!socket.isClosed()){
+                try {
+                    is = socket.getInputStream();
+                    ObjectInputStream ois = new ObjectInputStream(is);
+
                     Object obj = ois.readObject();
                     Message message = (Message)obj;
                     processMessage(message, player);
+
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                    break;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }

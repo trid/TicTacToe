@@ -10,5 +10,8 @@ package my.messages.serialized;
 public enum GameMessageType {
     XO_MESSAGE,
     CHAT_MESSAGE,
+    WHOAMI,
+    PLAYER_SIDE,
+    GAME_OVER_MESSAGE,
     ANSWER_MESSAGE
 }

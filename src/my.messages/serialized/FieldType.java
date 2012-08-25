@@ -9,6 +9,6 @@ package my.messages.serialized;
  */
 public enum FieldType {
     X,
-    Y,
+    O,
     EMPTY
 }

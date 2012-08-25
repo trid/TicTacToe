@@ -39,6 +39,7 @@ public class Field {
             return FieldAnswerType.NOT_YOUR_TURN;
         }
 
+        fieldStatus();
         return FieldAnswerType.ACCEPTED;
     }
 
@@ -62,25 +63,25 @@ public class Field {
             FieldType[] row = cells[i];
             if (row[0] == row[1] && row[1] == row[2]){
                 if (row[0] == FieldType.X) return FieldStatus.WIN_X;
-                else return FieldStatus.WIN_Y;
+                else if (row[0] == FieldType.O) return FieldStatus.WIN_Y;
             }
         }
         for (int i = 0; i < 3; i++)
         {
             //I'm sad. I can't take columns just like rows :(
             if (cells[0][i] == cells[1][i] && cells[1][i] == cells[2][i]){
-                if (cells[i][0] == FieldType.X) return FieldStatus.WIN_X;
-                else return FieldStatus.WIN_Y;
+                if (cells[0][i] == FieldType.X) return FieldStatus.WIN_X;
+                else if (cells[0][i] == FieldType.O) return FieldStatus.WIN_Y;
             }
         }
         //Not too cool diagonal comparison. Do we really may need loop here? (Yes, we need, if just there will be more cells
         if (cells[0][0] == cells[1][1] && cells[1][1] == cells[2][2]){
             if (cells[0][0] == FieldType.X) return FieldStatus.WIN_X;
-            else return FieldStatus.WIN_Y;
+            else if (cells[0][0] == FieldType.O) return FieldStatus.WIN_Y;
         }
         if (cells[0][2] == cells[1][1] && cells[1][1] == cells[2][0]){
-            if (cells[0][0] == FieldType.X) return FieldStatus.WIN_X;
-            else return FieldStatus.WIN_Y;
+            if (cells[0][2] == FieldType.X) return FieldStatus.WIN_X;
+            else if (cells[0][2] == FieldType.O) return FieldStatus.WIN_Y;
         }
         //Every next comparison is bigger then previous. WTF?!
 

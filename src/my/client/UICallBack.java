@@ -1,6 +1,8 @@
 package my.client;
 
+import my.messages.serialized.Answer;
 import my.messages.serialized.ChatMessage;
+import my.messages.serialized.FieldType;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,4 +13,9 @@ import my.messages.serialized.ChatMessage;
  */
 public interface UICallBack {
     void receiveChatMessage(ChatMessage message);
+    void receiveAnswer(Answer message);
+    void setMark(int x, int y, FieldType markType);
+    void resultWin();
+    void resultLose();
+    void resultFriendship();
 }

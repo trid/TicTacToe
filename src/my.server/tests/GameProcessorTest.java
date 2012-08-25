@@ -24,22 +24,23 @@ public class GameProcessorTest extends TestCase {
         instance.flush();
         assertEquals(instance.getCurrentPlayer(), FieldType.X);
         instance.putMark(0, 0, FieldType.X);
-        assertEquals(instance.getCurrentPlayer(), FieldType.Y);
+        assertEquals(instance.getCurrentPlayer(), FieldType.O);
     }
 
     public void testPutMark() throws Exception {
         instance.flush();
         assertEquals(FieldAnswerType.EMPTY_FIELD_SETTING, instance.putMark(0, 0, FieldType.EMPTY));
-        assertEquals(FieldAnswerType.NOT_YOUR_TURN, instance.putMark(0, 0, FieldType.Y));
+        assertEquals(FieldAnswerType.NOT_YOUR_TURN, instance.putMark(0, 0, FieldType.O));
         assertEquals(FieldAnswerType.ACCEPTED, instance.putMark(0, 0, FieldType.X));
-        assertEquals(FieldAnswerType.ALREADY_SET, instance.putMark(0, 0, FieldType.Y));
+        assertEquals(FieldAnswerType.ALREADY_SET, instance.putMark(0, 0, FieldType.O));
+        assertEquals(FieldStatus.GAME_GOING, instance.getStatus());
         //Let us play with ourselves to get winning position
-        instance.putMark(0, 1, FieldType.Y);
+        instance.putMark(0, 1, FieldType.O);
         instance.putMark(1, 0, FieldType.X);
-        instance.putMark(1, 1, FieldType.Y);
+        instance.putMark(1, 1, FieldType.O);
         instance.putMark(2, 0, FieldType.X);
         assertEquals(FieldStatus.WIN_X, instance.getStatus());
-        assertEquals(FieldAnswerType.GAME_ALREADY_OVER, instance.putMark(0, 0, FieldType.Y));
+        assertEquals(FieldAnswerType.GAME_ALREADY_OVER, instance.putMark(0, 0, FieldType.O));
         //Somewhere here may be needed neutral result... But when i just think about writing it...
     }
 }

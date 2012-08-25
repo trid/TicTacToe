@@ -29,7 +29,7 @@ public class GameProcessor {
         FieldAnswerType answer = field.putXO(x, y, type);
         if (answer == FieldAnswerType.ACCEPTED){
             if (currentPlayer == FieldType.X)
-                currentPlayer = FieldType.Y;
+                currentPlayer = FieldType.O;
             else
                 currentPlayer = FieldType.X;
         }

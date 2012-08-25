@@ -13,13 +13,13 @@ public class Player {
     FieldType playerSide;
     String playerName;
 
+    public Player() {
+
+    }
+
     public Player(FieldType playerSide, String playerName) {
         this.playerSide = playerSide;
         this.playerName = playerName;
-    }
-
-    public Player() {
-
     }
 
     public FieldType getPlayerSide() {
@@ -28,5 +28,13 @@ public class Player {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    public void setPlayerSide(FieldType playerSide) {
+        this.playerSide = playerSide;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 }

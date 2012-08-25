@@ -1,12 +1,11 @@
 package my.client;
 
-import my.messages.serialized.ChatMessage;
-import my.messages.serialized.FieldType;
-import my.messages.serialized.Message;
+import my.messages.serialized.*;
 
 import java.io.*;
 
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,11 +43,23 @@ public class ClientController implements Runnable {
     public void processMessage(Message message){
         switch (message.getType()) {
             case XO_MESSAGE:
+                Client.getClient().receiveSetMark((SetXOMessage)message);
                 break;
             case CHAT_MESSAGE:
+                System.out.println("Got chat message");
                 Client.getClient().receiveChatMessage((ChatMessage)message);
                 break;
             case ANSWER_MESSAGE:
+                System.out.println("Got answer from game server");
+                Client.getClient().receiveAnswer((Answer)message);
+                break;
+            case PLAYER_SIDE:
+                System.out.println("Got player side");
+                Client.getClient().setPlayerSide(((PlayerSideMessage) message).getPlayerType());
+                break;
+            case GAME_OVER_MESSAGE:
+                System.out.println("Game over");
+                Client.getClient().gameOver((GameOverMessage)message);
                 break;
         }
     }
@@ -56,17 +67,20 @@ public class ClientController implements Runnable {
     @Override
     public void run() {
         InputStream is = null;
-        try {
-            is = socket.getInputStream();
-            ObjectInputStream ois = new ObjectInputStream(is);
-            while (!socket.isClosed()){
+        while (!socket.isClosed()){
+            try {
+                is = socket.getInputStream();
+                ObjectInputStream ois = new ObjectInputStream(is);
                 Message message = (Message)ois.readObject();
                 processMessage(message);
+            } catch (SocketException e) {
+                e.printStackTrace();
+                break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }
